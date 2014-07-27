@@ -1,10 +1,10 @@
 {****************************************************}
 {                                                    }
-{  Generics.Tuples                                       }
+{  Generics.Tuples                                   }
 {                                                    }
 {  Copyright (C) 2014 Malcolm Groves                 }
 {                                                    }
-{  http://www.malcolmgroves.com                      }
+{  https://github.com/malcolmgroves/generics.tuples  }
 {                                                    }
 {****************************************************}
 {                                                    }
@@ -77,9 +77,12 @@ begin
 end;
 
 destructor TTuple<T1, T2>.Destroy;
+{$IFNDEF AUTOREFCOUNT}
 var
   LValue1Holder, LValue2Holder : TValue;
+{$ENDIF}
 begin
+{$IFNDEF AUTOREFCOUNT}
   LValue1Holder := TValue.From<T1>(FValue1);
   if LValue1Holder.IsObject then
     LValue1Holder.AsObject.Free;
@@ -88,6 +91,7 @@ begin
   if LValue2Holder.IsObject then
     LValue2Holder.AsObject.Free;
   inherited;
+{$ENDIF}
 end;
 
 function TTuple<T1, T2>.GetValue1: T1;
@@ -119,12 +123,16 @@ begin
 end;
 
 destructor TTuple<T1, T2, T3>.Destroy;
+{$IFNDEF AUTOREFCOUNT}
 var
   LValue3Holder : TValue;
+{$ENDIF}
 begin
+{$IFNDEF AUTOREFCOUNT}
   LValue3Holder := TValue.From<T3>(FValue3);
   if LValue3Holder.IsObject then
     LValue3Holder.AsObject.Free;
+{$ENDIF}
   inherited;
 end;
 
