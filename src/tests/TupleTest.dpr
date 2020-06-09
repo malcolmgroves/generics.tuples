@@ -5,7 +5,9 @@ program TupleTest;
 {$ENDIF}
 
 uses
-  DUnitTestRunner,
+// Only one of the next two lines should be uncommented.
+//  DUnitTestRunner, // uncomment to use DUnit, or
+  TestInsight.Dunit, // uncomment to use TestInsight
   Generics.Tuples in '..\Generics.Tuples.pas',
   Generics.Tuples.Test in 'Generics.Tuples.Test.pas';
 
@@ -13,6 +15,6 @@ uses
 
 begin
   ReportMemoryLeaksOnShutdown := True;
-  DUnitTestRunner.RunRegisteredTests;
+  RunRegisteredTests;
 end.
 
